@@ -120,3 +120,57 @@ body {
     transform: translateY(10px);
   }
 }
+
+.uploadBox {
+  margin-top: 4rem;
+  border: 2px dashed #1a1a1d;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+
+  background-position: center;
+  overflow: hidden;
+  position: relative; /* Para manejar contenido interno */
+}
+
+.uploadBox:hover {
+  cursor: pointer;
+  background-color: #1a1a1d;
+  color: #fff;
+  border: 2px dashed #9edf9c;
+}
+
+.uploadBox.hasImage {
+  border: none; /* Opcional: para quitar el borde cuando hay una imagen */
+}
+
+.uploadDescription,
+.uploadIcon {
+  z-index: 1; /* Asegurar que estén delante del fondo */
+}
+
+.uploadBox.hasImage .uploadDescription,
+.uploadBox.hasImage .uploadIcon {
+  display: none; /* Ocultar texto e ícono cuando hay una imagen */
+}
+
+.uploadButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.uploadButton:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
