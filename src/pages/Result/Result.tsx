@@ -2,31 +2,15 @@ import { ResultItem } from '../../components/ResultItem/ResultItem';
 import Modal from '@mui/material/Modal';
 import { useState, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import './Result.css';
 
 export const Result = () => {
-  const results: string[] = [
-    'src/assets/img-01.png',
-    'src/assets/img-02.png',
-    'src/assets/img-03.png',
-    'src/assets/img-04.png',
-    'src/assets/img-05.png',
-    'src/assets/img-06.png',
-    'src/assets/img-07.png',
-    'src/assets/img-08.png',
-    'src/assets/img-09.png',
-    'src/assets/img-10.png',
-    'src/assets/img-11.png',
-    'src/assets/img-12.png',
-    'src/assets/img-13.png',
-    'src/assets/img-14.png',
-  ];
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-
+  const { state } = useLocation();
+  const results: string[] = state?.images || [];
   // show animation button
   useEffect(() => {
     let interval: number;
@@ -48,6 +32,7 @@ export const Result = () => {
     setOpen(false);
     setCurrentImageIndex(0);
   };
+  if (state === null) return <Navigate to={'/'} replace={true} />;
 
   return (
     <>
@@ -74,7 +59,7 @@ export const Result = () => {
         </div>
         <div className="images-grid">
           {results.map((result, index) => {
-            return <ResultItem image={result} iteration={index} />;
+            return <ResultItem key={result} image={result} iteration={index} />;
           })}
         </div>
       </div>
@@ -82,7 +67,7 @@ export const Result = () => {
         <div className="modalContainer">
           <img
             className="modalImage"
-            src={results[currentImageIndex]}
+            src={`https://trabajo-final-calidad-gps.onrender.com/${results[currentImageIndex]}`}
             alt={`Resultado ${currentImageIndex + 1}`}
           />
           <div className="modalCloseButton" onClick={handleClose}>

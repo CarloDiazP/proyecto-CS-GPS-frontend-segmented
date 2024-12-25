@@ -18,7 +18,7 @@ export const ResultItem = ({ image, iteration }: ResultItemProps) => {
         <div className="iteration">Iteración {iteration}</div>
         <img
           className="iterationImage"
-          src={image}
+          src={`https://trabajo-final-calidad-gps.onrender.com/${image}`}
           alt={`iteration ${iteration}`}
         />
       </div>
